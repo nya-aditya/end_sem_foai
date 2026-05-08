@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-app: #fcfcf9;
+  --bg-card: #ffffff;
+  --text-main: #0a0a0a;
+  --text-muted: #666666;
+  --border-color: rgba(0, 0, 0, 0.08);
+  --accent-blue: #2563eb;
+  --glass-bg: rgba(255, 255, 255, 0.7);
+}
+
+.dark {
+  --bg-app: #05070a;
+  --bg-card: #0b0d17;
+  --text-main: #ffffff;
+  --text-muted: rgba(255, 255, 255, 0.5);
+  --border-color: rgba(255, 255, 255, 0.1);
+  --accent-blue: #3b82f6;
+  --glass-bg: rgba(11, 13, 23, 0.8);
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-app);
+  color: var(--text-main);
+  transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  -webkit-font-smoothing: antialiased;
+}
+
+@layer components {
+  .glass-card {
+    @apply border transition-all duration-300;
+    background-color: var(--bg-card);
+    border-color: var(--border-color);
+    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+    border-radius: 24px;
+  }
+
+  .dark .glass-card {
+    box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.3);
+  }
+
+  .btn-primary {
+    @apply px-6 py-3 rounded-xl font-bold uppercase tracking-widest text-xs transition-all active:scale-95 flex items-center gap-2;
+    background-color: var(--text-main);
+    color: var(--bg-app);
+  }
+
+  .section-header {
+    @apply text-3xl font-black tracking-tight mb-2;
+    color: var(--text-main);
+  }
+
+  .section-subtitle {
+    @apply text-sm font-bold uppercase tracking-[0.2em];
+    color: var(--accent-blue);
+  }
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-app);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* Custom Leaflet Dark Mode */
+.dark .leaflet-tile {
+  filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%);
+}
+
+.dark .leaflet-container {
+  background: #05070a !important;
+}
